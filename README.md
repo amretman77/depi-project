@@ -305,7 +305,7 @@ Through this project, the goal is to gain practical experience with:
 - Python and MySQL integration.
 - Data validation and referential integrity.
 - Git-based project organization and documentation.
-
+Duck you
 ---
 
 *This project is intended as a practical learning and portfolio project. Features and milestones will be marked as completed as the implementation progresses.*
