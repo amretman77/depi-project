@@ -7,7 +7,7 @@ authors = [
     { name = "Amr Etman", email = "amretman1213@gmail.com" }
 ]
 
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
     "ipykernel",
     "matplotlib",
