@@ -246,8 +246,6 @@ pygments==2.21.0
     #   ipython-pygments-lexers
     #   jupyter-console
     #   nbconvert
-pymysql==1.2.3
-    # via depi-project
 pyparsing==3.3.3
     # via matplotlib
 python-dateutil==2.9.0.post0
@@ -302,8 +300,6 @@ six==1.17.0
     #   rfc3339-validator
 soupsieve==3.0.3
     # via beautifulsoup4
-sqlalchemy==2.1.4
-    # via depi-project
 stack-data==0.6.3
     # via ipython
 terminado==0.18.1
@@ -341,7 +337,6 @@ typing-extensions==4.16.0
     #   anyio
     #   beautifulsoup4
     #   jupyter-client
-    #   sqlalchemy
 tzdata==2026.5
     # via
     #   arrow
