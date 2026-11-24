@@ -1,7 +1,7 @@
 table,total_columns,missing_columns,extra_columns,schema_valid
 distribution_centers,2,[],[],True
 products,8,[],[],True
-inventory_items,11,[],[],True
+inventory_items,12,[],['available'],False
 users,12,[],[],True
 orders,8,[],[],True
 order_items,7,[],[],True
