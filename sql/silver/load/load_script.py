@@ -15,9 +15,7 @@ import sys
 from pathlib import Path
 
 import pandas as pd
-
-from sqlalchemy import text, inspect
-
+from sqlalchemy import inspect, text
 
 # =====================================================
 # Project Paths
@@ -34,7 +32,6 @@ sys.path.insert(0, str(SRC_PATH))
 # =====================================================
 
 from depi_project.dbconnection.connection import get_engine
-
 
 # =====================================================
 # Configuration
