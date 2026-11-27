@@ -47,6 +47,8 @@ PRIMARY_KEY = "id"
 
 EXCLUDED_FILES = {"temp.parquet"}
 
+NO_WATERMARK_FILES = {"customer_activity.parquet"}
+
 CHUNK_SIZE = 10_000
 
 
@@ -214,7 +216,10 @@ def load_parquet_to_silver():
     if not PARQUET_DIR.exists():
         raise FileNotFoundError(f"Parquet directory not found: {PARQUET_DIR}")
 
-    parquet_files = sorted(PARQUET_DIR.glob("*.parquet"))
+    parquet_files = sorted(
+        PARQUET_DIR.glob("*.parquet"),
+        key=lambda file: (file.name == "customer_reviews.parquet", file.name),
+    )
 
     if not parquet_files:
         print("No Parquet files found.")
@@ -228,7 +233,7 @@ def load_parquet_to_silver():
     create_watermark_table(engine)
 
     for file in parquet_files:
-        if file.name in EXCLUDED_FILES:
+        if file.name in EXCLUDED_FILES or file.name in NO_WATERMARK_FILES:
             print(f"Skipping: {file.name}")
             continue
 

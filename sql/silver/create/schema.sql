@@ -91,3 +91,19 @@ CREATE TABLE users (
     traffic_source TEXT,
     created_at TIMESTAMPTZ
 );
+
+CREATE TABLE customer_reviews (
+    id TEXT PRIMARY KEY,
+    order_id TEXT NOT NULL,
+    order_item_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+    product_id TEXT NOT NULL,
+    rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    title TEXT NOT NULL,
+    review_text TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL
+);
+
+CREATE INDEX idx_customer_reviews_order_id ON customer_reviews (order_id);
+CREATE INDEX idx_customer_reviews_user_id ON customer_reviews (user_id);
+CREATE INDEX idx_customer_reviews_product_id ON customer_reviews (product_id);
