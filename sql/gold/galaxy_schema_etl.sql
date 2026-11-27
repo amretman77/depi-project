@@ -305,15 +305,24 @@ JOIN gold.dim_event_profile ep
 -- =====================================================================
 -- 5) VIEW (replaces the customer_activity table)
 -- =====================================================================
-
 CREATE OR REPLACE VIEW gold.vw_customer_activity AS
-SELECT du.user_id,
-       MIN(dd.full_date)                              AS first_order_date,
-       MAX(dd.full_date)                              AS last_order_date,
-       DATE '2022-06-08' - MAX(dd.full_date)          AS days_since_last_order
+SELECT
+    du.user_id,
+    MIN(dd.full_date) AS first_order_date,
+    MAX(dd.full_date) AS last_order_date,
+    DATE '2022-06-08' - MAX(dd.full_date) AS days_since_last_order,
+
+    CASE
+        WHEN DATE '2022-06-08' - MAX(dd.full_date) < 365 THEN 1
+        ELSE 0
+    END::INT AS is_active
+
 FROM gold.fact_sales fs
-JOIN gold.dim_user du ON du.user_key = fs.user_key
-JOIN gold.dim_date dd ON dd.date_key = fs.order_date_key
+JOIN gold.dim_user du
+    ON du.user_key = fs.user_key
+JOIN gold.dim_date dd
+    ON dd.date_key = fs.order_date_key
+
 GROUP BY du.user_id;
 -- dynamic reference date: replace DATE '2022-06-08' with CURRENT_DATE
 
